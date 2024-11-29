@@ -21,7 +21,7 @@ class LoginPage {
   }
  
   assertSuccessfulLogin(userFirstName, userLastName){
-    cy.wait(7000)
+    cy.wait(5000)
     cy.contains(userFirstName).should('be.visible')
     cy.contains(userLastName).should('be.visible')
    }
