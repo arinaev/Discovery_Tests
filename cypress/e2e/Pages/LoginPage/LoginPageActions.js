@@ -26,11 +26,17 @@ class LoginPage {
     cy.contains(userLastName).should('be.visible')
    }
  
-   /*
-  assertErrorMessage() {
-    cy.get(this.elements.errorMessage).should('be.visible')
-    cy.contains('Invalid credentials').should('be.visible')
-   } */
+  
+  assertErrorMessage(text) {
+    //cy.get(this.elements.errorMessage).should('be.visible')
+    cy.contains(text).should('be.visible')
+  } 
+
+  assertErrorAlertOpens(alertText) {
+    cy.on('window:alert', (text) => {
+        expect(text).to.equal(alertTExt);
+        })
+  } 
 
 
   assertAvailability(text) {

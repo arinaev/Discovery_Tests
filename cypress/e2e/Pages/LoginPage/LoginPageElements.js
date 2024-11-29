@@ -1,8 +1,12 @@
 const loginPageLocators = {
     usernameField: 'input[type="text"]',
     passwordField: 'input[type="password"]',
-    loginButton: 'button[type="submit"]'
-    //errorMessage: '---'
+    loginButton: 'button[type="submit"]',
+    emailIcon: 'i[class="pi pi-envelope"]',
+    keyIcon: 'i[class="pi pi-key"]',
+    placeholderUsernameField: '[placeholder = "example@mail.ru"]',
+    placeholderPassswordField: '[placeholder = "Введите пароль"]'
+    
    }
    
    const constants = {
@@ -13,8 +17,13 @@ const loginPageLocators = {
     welcomeText: "Войти в личный кабинет",
     buttonFogetPassword: "Забыли пароль",
     userFirstname: "Arina",
-    userLastname: "Test"
-   
+    userLastname: "Test",
+    errorAlertText:"Ошибка валидации",
+    errorMessageTextEmptyField: "Поле обязательно для заполнения",
+    errorAlertTextWrongInput: "Указан неправильный логин или пароль",
+    wrongUsername: "wrong@example.com",
+    wrongPassword: "Wrong",
+    
    }
      
    export { loginPageLocators,constants}
