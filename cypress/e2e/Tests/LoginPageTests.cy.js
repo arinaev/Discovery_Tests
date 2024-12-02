@@ -9,20 +9,54 @@ describe('Login Page View', () => {
     loginPage.open()
   });
     
-  it('should display all required UI elements', () => {
-             
-    loginPage.assertAvailability(constants.buttonFogetPassword) 
-    loginPage.assertAvailability(constants.welcomeText)
-    loginPage.assertElementAvailability(loginPageLocators.loginButton)
-    loginPage.assertElementAvailability(loginPageLocators.emailIcon)
-    loginPage.assertElementAvailability(loginPageLocators.keyIcon)
-    loginPage.assertElementAvailability(loginPageLocators.placeholderPassswordField)
-    loginPage.assertElementAvailability(loginPageLocators.placeholderUsernameField)
-    
+  it('should display the "Foget Password" link', () => {             
+    loginPage.assertAvailability(constants.buttonFogetPassword)     
   // Наличие всех элементов на странице в режиме полного/неполного/моб. экрана:
   // Радио кнопка для опций эл. почты и номера тел (по умолч. на эл. почте)
  
   })
+  
+  it('should display radiobuttons for Email and Phone number options', () => {
+    loginPage.open()         
+    loginPage.assertElementAvailability(loginPageLocators.emailRadiobutton)
+    loginPage.assertElementAvailability(loginPageLocators.phoneRadiobutton)
+  })
+
+  it('should display the radiobutton for Email as checked by default', () => {
+    loginPage.open()         
+    loginPage.assertElementIsChecked(loginPageLocators.emailRadiobuttonChecked)
+  })
+
+  it('should display a welcome text', () => {
+    loginPage.open()         
+    loginPage.assertAvailability(constants.welcomeText)
+  })
+
+  it('should display the "Login" button', () => {
+    loginPage.open()         
+    loginPage.assertElementAvailability(loginPageLocators.loginButton)
+  })
+
+  it('should display the email icon for the email input field', () => {
+    loginPage.open()         
+    loginPage.assertElementAvailability(loginPageLocators.emailIcon) 
+  })
+
+  it('should display the key icon for the password input field', () => {
+    loginPage.open()         
+    loginPage.assertElementAvailability(loginPageLocators.keyIcon) 
+  })
+
+  it('should display the password input field', () => {
+    loginPage.open()         
+    loginPage.assertElementAvailability(loginPageLocators.placeholderPassswordField)
+  })
+
+  it('should display the username input field', () => {
+    loginPage.open()         
+    loginPage.assertElementAvailability(loginPageLocators.placeholderUsernameField)
+  })
+ 
  
 })
 
@@ -37,6 +71,7 @@ describe('Login Functionality', () => {
   loginPage.assertErrorAlertOpens(constants.errorAlertText)
   //Add assertion of message "Поле обязательно для заполнения" для мейла
   //Add assertion of message "Поле обязательно для заполнения" для пасворда
+  //Alert is closed
   
  })
 

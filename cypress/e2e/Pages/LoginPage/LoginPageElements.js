@@ -5,7 +5,11 @@ const loginPageLocators = {
     emailIcon: 'i[class="pi pi-envelope"]',
     keyIcon: 'i[class="pi pi-key"]',
     placeholderUsernameField: '[placeholder = "example@mail.ru"]',
-    placeholderPassswordField: '[placeholder = "Введите пароль"]'
+    placeholderPassswordField: '[placeholder = "Введите пароль"]',
+    emailRadiobutton: '[class="flex items-center"]:nth-child(1) ',
+    phoneRadiobutton: '[class="flex items-center"]:nth-child(2)',
+    emailRadiobuttonChecked: '[class="flex items-center"]:nth-child(1) > div > input'
+
     
    }
    

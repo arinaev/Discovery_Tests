@@ -46,6 +46,11 @@ class LoginPage {
   assertElementAvailability(selector) {
     cy.get(selector).should('be.visible')
   }
+
+  assertElementIsChecked(selector) {
+    cy.get(selector).should('be.checked')
+  }
+  
 }
  
 export default LoginPage
