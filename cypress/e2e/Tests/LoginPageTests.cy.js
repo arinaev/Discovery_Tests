@@ -62,9 +62,9 @@ describe('Login Page View', () => {
             loginPage.assertElementAvailability(loginPageLocators.placeholderPassswordField)
           })
         
-          it('should display the username input field', () => {
+          it('should display the email address input field', () => {
             loginPage.open()         
-            loginPage.assertElementAvailability(loginPageLocators.placeholderUsernameField)
+            loginPage.assertElementAvailability(loginPageLocators.placeholderEmailField)
           })
          
         })
@@ -72,7 +72,77 @@ describe('Login Page View', () => {
 })
 
 
-describe('Login Functionality', () => {
+describe('Login Functionality with Email', () => {
+  const loginPage = new LoginPage()
+
+ it('should display errors when the login form is empty', () => {
+  loginPage.open()
+  loginPage.clickButton(loginPageLocators.loginButton)
+
+  loginPage.assertErrorAlertOpens(constants.errorAlertText)
+  //Add assertion of message "Поле обязательно для заполнения" для мейла
+  //Add assertion of message "Поле обязательно для заполнения" для пасворда
+  //Alert is closed
+ })
+
+ it('should display errors when the email input field is empty', () => {
+  loginPage.open()
+  loginPage.login(" ", constants.password)
+
+  loginPage.assertErrorAlertOpens(constants.errorAlertText)
+  loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)
+ })
+
+   
+ it('should display errors when the password is empty', () => {
+  loginPage.open()
+  loginPage.login(constants.emailAddress, " ")
+  
+  loginPage.assertErrorAlertOpens(constants.errorAlertText)
+  loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)
+ })
+
+ it('should display errors when the password is wrong', () => {
+   loginPage.open()
+   loginPage.login(constants.emailAddress, constants.wrongPassword)
+   
+   loginPage.assertErrorAlertOpens(constants.errorAlertTextWrongInput)
+
+ })
+
+ it('should display errors when the email address is wrong', () => {
+  loginPage.open()
+  loginPage.login(constants.wrongEmail, constants.password)
+   
+  loginPage.assertErrorAlertOpens(constants.errorAlertTextWrongInput)
+ })
+
+ it('should allow login with correct credentials', () => {
+   
+   loginPage.open()
+   loginPage.login(constants.emailAddress, constants.password)
+   
+   loginPage.assertSuccessfulLogin(constants.userFirstname, constants.userLastname)
+ }) 
+
+     
+
+ /*
+Проверить, что url правильно указан
+Переход с опции эл. почты на номер телефона и обратно
+Войти указав верный номер и пароль
+Войти указав неверный номер и пароль
+Войти указав только один из полей верно (номера/пароля)
+Войти оставив поля пустыми (номера/пароля)
+Войти оставив один из полей пустым (номера/пароля)
+Нажать на кнопку "Войти"
+Проверить уведомления об ошибках и подсвечивание полей после неудачного входа в личн. кабинет
+*/
+
+})
+
+/*
+describe('Login Functionality with Phone number', () => {
   const loginPage = new LoginPage()
 
  it('should display errors when the login form is empty', () => {
@@ -125,19 +195,5 @@ describe('Login Functionality', () => {
    loginPage.assertSuccessfulLogin(constants.userFirstname, constants.userLastname)
  }) 
 
-     
+}) */
 
- /*
-Проверить, что url правильно указан
-Проверить, что опция эл. почты выбрана по умолчанию
-Переход с опции эл. почты на номер телефона и обратно
-Войти указав верный номер и пароль
-Войти указав неверный номер и пароль
-Войти указав только один из полей верно (номера/пароля)
-Войти оставив поля пустыми (номера/пароля)
-Войти оставив один из полей пустым (номера/пароля)
-Нажать на кнопку "Войти"
-Проверить уведомления об ошибках и подсвечивание полей после неудачного входа в личн. кабинет
-*/
-
-})

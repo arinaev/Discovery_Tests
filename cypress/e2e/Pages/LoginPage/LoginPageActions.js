@@ -14,8 +14,8 @@ class LoginPage {
     cy.get(selector).click()
   }
   
-  login(username, password) {
-    this.typeText(loginPageLocators.usernameField, username)
+  login(email, password) {
+    this.typeText(loginPageLocators.emailField, email)
     this.typeText(loginPageLocators.passwordField, password)
     this.clickButton(loginPageLocators.loginButton)
   }
