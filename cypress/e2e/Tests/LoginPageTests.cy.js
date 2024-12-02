@@ -129,21 +129,24 @@ describe('Login Functionality with Email', () => {
 
  /*
 Проверить, что url правильно указан
-Переход с опции эл. почты на номер телефона и обратно
 Войти указав верный номер и пароль
 Войти указав неверный номер и пароль
 Войти указав только один из полей верно (номера/пароля)
-Войти оставив поля пустыми (номера/пароля)
-Войти оставив один из полей пустым (номера/пароля)
 Нажать на кнопку "Войти"
 Проверить уведомления об ошибках и подсвечивание полей после неудачного входа в личн. кабинет
 */
 
 })
 
-/*
+
 describe('Login Functionality with Phone number', () => {
   const loginPage = new LoginPage()
+
+  before(() => {
+        loginPage.open();
+        loginPage.clickButton(loginPageLocators.phoneRadiobutton)
+
+  });
 
  it('should display errors when the login form is empty', () => {
   loginPage.open()
@@ -155,7 +158,7 @@ describe('Login Functionality with Phone number', () => {
   //Alert is closed
  })
 
- it('should display errors when the username is empty', () => {
+ it('should display errors when the phone number input field is empty', () => {
   loginPage.open()
   loginPage.login(" ", constants.password)
 
@@ -163,6 +166,7 @@ describe('Login Functionality with Phone number', () => {
   loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)
  })
 
+ /*
    
  it('should display errors when the password is empty', () => {
   loginPage.open()
@@ -193,7 +197,7 @@ describe('Login Functionality with Phone number', () => {
    loginPage.login(constants.username, constants.password)
    
    loginPage.assertSuccessfulLogin(constants.userFirstname, constants.userLastname)
- }) 
+ }) */
 
-}) */
+}) 
 
