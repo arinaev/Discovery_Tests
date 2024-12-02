@@ -8,7 +8,10 @@ const loginPageLocators = {
     placeholderPassswordField: '[placeholder = "Введите пароль"]',
     emailRadiobutton: '[class="flex items-center"]:nth-child(1) ',
     phoneRadiobutton: '[class="flex items-center"]:nth-child(2)',
-    emailRadiobuttonChecked: '[class="flex items-center"]:nth-child(1) > div > input'
+    emailRadiobuttonChecked: '[class="flex items-center"]:nth-child(1) > div > input',
+    phoneField: '[type="text"]',
+    phoneIcon: 'i[class="pi pi-phone"]',
+    placeholderPhoneField: '[placeholder="+7(___)___-__-__"]'
 
     
    }
@@ -27,6 +30,8 @@ const loginPageLocators = {
     errorAlertTextWrongInput: "Указан неправильный логин или пароль",
     wrongEmail: "wrong@example.com",
     wrongPassword: "Wrong",
+    phone: "4125963254",
+    wrongPhone: "0000000000"
     
    }
      
