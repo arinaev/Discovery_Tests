@@ -3,7 +3,7 @@ import {loginPageLocators,constants} from "./LoginPageElements"
 class LoginPage {
 
   open() {
-    cy.visit(constants.urlStage)
+    cy.visit(constants.urlDev)
   }
   
   typeText(selector, text) {
@@ -32,12 +32,17 @@ class LoginPage {
     cy.contains(text).should('be.visible')
   } 
 
+ *
   assertErrorAlertOpens(alertText) {
+    let alertTriggered = false;
     cy.on('window:alert', (text) => {
-        expect(text).to.equal(alertTExt);
-        })
+        expect(text).to.equal(alertText);
+        alertTriggered = true;
+       })
+    cy.wrap(null).should(() => {
+        expect(alertTriggered).to.be.true; // This will appear in the Cypress log
+      });
   } 
-
 
   assertAvailability(text) {
     cy.contains(text).should('be.visible')

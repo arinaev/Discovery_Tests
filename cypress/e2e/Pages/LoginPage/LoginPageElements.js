@@ -11,7 +11,10 @@ const loginPageLocators = {
     emailRadiobuttonChecked: '[class="flex items-center"]:nth-child(1) > div > input',
     phoneField: '[type="text"]',
     phoneIcon: 'i[class="pi pi-phone"]',
-    placeholderPhoneField: '[placeholder="+7(___)___-__-__"]'
+    placeholderPhoneField: '[placeholder="+7(___)___-__-__"]',
+    errorMessageForEmailField: 'div:nth-child(2) > [class="text-red-600"]',
+    errorMessageForPasswordField: 'div:nth-child(3) > [class="text-red-600"]',
+    errorMessageForPhoneField: 'div:nth-child(2) > [class="text-red-600"]'
 
     
    }
@@ -30,7 +33,7 @@ const loginPageLocators = {
     errorAlertTextWrongInput: "Указан неправильный логин или пароль",
     wrongEmail: "wrong@example.com",
     wrongPassword: "Wrong",
-    phone: "4125963254",
+    phone: "9920647262",
     wrongPhone: "0000000000"
     
    }

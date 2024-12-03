@@ -67,9 +67,12 @@ describe('Login Page View', () => {
             loginPage.assertElementAvailability(loginPageLocators.placeholderEmailField)
           })
 
-          //phone number radiobutton -> form fields
-          //phone icon is visible
-         
+          it('should display the phone icon for the phone number input field', () => {
+            loginPage.open()
+            loginPage.clickButton(loginPageLocators.phoneRadiobutton)         
+            loginPage.assertElementAvailability(loginPageLocators.phoneIcon)
+          })
+
         })
     })
 })
@@ -82,12 +85,17 @@ describe('Login Functionality with Email', () => {
     loginPage.open()
   });
 
+  it('should be loaded a correct URL', () => {
+    cy.url().should('eq', constants.urlDev);
+   })
+
  it('should display errors when the login form is empty', () => {
   loginPage.clickButton(loginPageLocators.loginButton)
-  loginPage.assertErrorAlertOpens(constants.errorAlertText)
-  //Add assertion of message "Поле обязательно для заполнения" для мейла
-  //Add assertion of message "Поле обязательно для заполнения" для пасворда
+  //loginPage.assertErrorAlertOpens(constants.errorAlertText) //the assertion doesn't implemented, doesn't work
   //Alert is closed
+  loginPage.assertElementAvailability(loginPageLocators.errorMessageForEmailField)
+  loginPage.assertElementAvailability(loginPageLocators.errorMessageForPasswordField) 
+  
  })
 
  it('should display errors when the email input field is empty', () => {
@@ -118,12 +126,8 @@ describe('Login Functionality with Email', () => {
    loginPage.login(constants.emailAddress, constants.password)
    loginPage.assertSuccessfulLogin(constants.userFirstname, constants.userLastname)
  }) 
-     
 
-
-//Проверить, что url правильно указан
-//Нажать на кнопку "Войти"
-//Проверить уведомления об ошибках и подсвечивание полей после неудачного входа в личн. кабинет
+ //Проверить подсвечивание полей после неудачного входа в личн. кабинет
 })
 
 
@@ -132,20 +136,21 @@ describe('Login Functionality with Phone number', () => {
 
   beforeEach(() => {
     loginPage.open()
-    loginPage.clickButton(loginPageLocators.loginButton)
+    loginPage.clickButton(loginPageLocators.phoneRadiobutton)
   });
-  
+
  it('should display errors when the login form is empty', () => {
-  loginPage.assertErrorAlertOpens(constants.errorAlertText)
-  //Add assertion of message "Поле обязательно для заполнения" для мейла
-  //Add assertion of message "Поле обязательно для заполнения" для пасворда
+  loginPage.clickButton(loginPageLocators.loginButton)
+  //loginPage.assertErrorAlertOpens(constants.errorAlertText) //the assertion doesn't implemented, doesn't work
   //Alert is closed
- })
+  loginPage.assertElementAvailability(loginPageLocators.errorMessageForPhoneField)
+  loginPage.assertElementAvailability(loginPageLocators.errorMessageForPasswordField) 
+  })
 
  it('should display errors when the phone number input field is empty', () => {
   loginPage.login(" ", constants.password)
   loginPage.assertErrorAlertOpens(constants.errorAlertText)
-  loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)
+  loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)  
  })
 
  it('should display errors when the password is empty', () => {
@@ -157,7 +162,6 @@ describe('Login Functionality with Phone number', () => {
  it('should display errors when the password is wrong', () => {
   loginPage.login(constants.phone, constants.wrongPassword)
   loginPage.assertErrorAlertOpens(constants.errorAlertTextWrongInput)
-
  })
 
  it('should display errors when the phone number is wrong', () => {
@@ -170,5 +174,6 @@ describe('Login Functionality with Phone number', () => {
   loginPage.assertSuccessfulLogin(constants.userFirstname, constants.userLastname)
  }) 
 
+ //Проверить подсвечивание полей после неудачного входа в личн. кабинет
 }) 
 
