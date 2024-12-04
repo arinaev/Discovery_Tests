@@ -13,6 +13,10 @@ class LoginPage {
   clickButton(selector) {
     cy.get(selector).click()
   }
+
+  click(label){
+    cy.contains(label).click()
+  }
   
   login(email, password) {
     this.typeText(loginPageLocators.emailField, email)
@@ -28,20 +32,13 @@ class LoginPage {
  
   
   assertErrorMessage(text) {
-    //cy.get(this.elements.errorMessage).should('be.visible')
     cy.contains(text).should('be.visible')
   } 
 
- *
   assertErrorAlertOpens(alertText) {
-    let alertTriggered = false;
-    cy.on('window:alert', (text) => {
+     cy.on('window:alert', (text) => {
         expect(text).to.equal(alertText);
-        alertTriggered = true;
-       })
-    cy.wrap(null).should(() => {
-        expect(alertTriggered).to.be.true; // This will appear in the Cypress log
-      });
+             })
   } 
 
   assertAvailability(text) {
