@@ -1,5 +1,16 @@
 import {loginPageLocators,constants} from "./LoginPageElements"
 
+Cypress.Commands.add('assertToast', (message, options = {}) => {
+  const { timeout = 5000 } = options;
+
+  cy.get('.p-toast-message.p-toast-message-error', { timeout }) // Adjust selector
+    .should('be.visible')
+    .and('contain', message)
+    .wait(timeout)
+    .should('not.exist');
+});
+
+
 class LoginPage {
 
   open() {
@@ -51,6 +62,10 @@ class LoginPage {
 
   assertElementIsChecked(selector) {
     cy.get(selector).should('be.checked')
+  }
+
+  assertToastAlert(text) {
+  cy.assertToast(text);
   }
   
 }

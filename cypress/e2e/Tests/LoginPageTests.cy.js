@@ -16,7 +16,6 @@ describe('Login Page View', () => {
           const loginPage = new LoginPage()
 
           beforeEach(() => {
-              // Set the viewport for the current screen size
               cy.viewport(size.width, size.height);
               loginPage.open();
             });
@@ -91,8 +90,7 @@ describe('Login Functionality with Email', () => {
 
  it('should display errors when the login form is empty', () => {
   loginPage.clickButton(loginPageLocators.loginButton)
-  //loginPage.assertErrorAlertOpens(constants.errorAlertText) //the assertion doesn't implemented, doesn't work
-  //Alert is closed
+  loginPage.assertToastAlert(constants.errorAlertText) 
   loginPage.assertElementAvailability(loginPageLocators.errorMessageForEmailField)
   loginPage.assertElementAvailability(loginPageLocators.errorMessageForPasswordField) 
   
@@ -100,26 +98,26 @@ describe('Login Functionality with Email', () => {
 
  it('should display errors when the email input field is empty', () => {
   loginPage.login(" ", constants.password)
-  //loginPage.assertErrorAlertOpens(constants.errorAlertText)
+  loginPage.assertToastAlert(constants.errorAlertText) 
   loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)
  })
 
    
  it('should display errors when the password is empty', () => {
   loginPage.login(constants.emailAddress, " ")
-  //loginPage.assertErrorAlertOpens(constants.errorAlertText)
+  loginPage.assertToastAlert(constants.errorAlertText) 
   loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)
  })
 
  it('should display errors when the password is wrong', () => {
    loginPage.login(constants.emailAddress, constants.wrongPassword)
-  // loginPage.assertErrorAlertOpens(constants.errorAlertTextWrongInput)
+   loginPage.assertToastAlert(constants.errorAlertTextWrongInput)
 
  })
 
  it('should display errors when the email address is wrong', () => {
   loginPage.login(constants.wrongEmail, constants.password)
-  //loginPage.assertErrorAlertOpens(constants.errorAlertTextWrongInput)
+  loginPage.assertToastAlert(constants.errorAlertTextWrongInput)
  })
 
  it('should allow login with correct credentials', () => {
@@ -141,32 +139,31 @@ describe('Login Functionality with Phone number', () => {
 
  it('should display errors when the login form is empty', () => {
   loginPage.clickButton(loginPageLocators.loginButton)
-  //loginPage.assertErrorAlertOpens(constants.errorAlertText) //the assertion doesn't implemented, doesn't work
-  //Alert is closed
+  loginPage.assertToastAlert(constants.errorAlertText) 
   loginPage.assertElementAvailability(loginPageLocators.errorMessageForPhoneField)
   loginPage.assertElementAvailability(loginPageLocators.errorMessageForPasswordField) 
   })
 
  it('should display errors when the phone number input field is empty', () => {
   loginPage.login(" ", constants.password)
-  //loginPage.assertErrorAlertOpens(constants.errorAlertText)
+  loginPage.assertToastAlert(constants.errorAlertText) 
   loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)  
  })
 
  it('should display errors when the password is empty', () => {
   loginPage.login(constants.phone, " ")
-  //loginPage.assertErrorAlertOpens(constants.errorAlertText)
+  loginPage.assertToastAlert(constants.errorAlertText) 
   loginPage.assertErrorMessage(constants.errorMessageTextEmptyField)
  })
 
  it('should display errors when the password is wrong', () => {
   loginPage.login(constants.phone, constants.wrongPassword)
-  //loginPage.assertErrorAlertOpens(constants.errorAlertTextWrongInput)
+  loginPage.assertToastAlert(constants.errorAlertTextWrongInput)
  })
 
  it('should display errors when the phone number is wrong', () => {
   loginPage.login(constants.wrongPhone, constants.password)
-  //loginPage.assertErrorAlertOpens(constants.errorAlertTextWrongInput)
+  loginPage.assertToastAlert(constants.errorAlertTextWrongInput)
  })
 
  it('should allow login with correct credentials', () => {
