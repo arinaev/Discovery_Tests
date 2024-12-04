@@ -13,37 +13,72 @@ describe('Forgot Password Page View', () => {
 
     Cypress._.each(screenSizes, (size) => {
 
-      describe(`LoginForgot Password Page View on ${size.name} (${size.width}x${size.height})`, () => {
+      describe(`Forgot Password Page View on ${size.name} (${size.width}x${size.height})`, () => {
 
           const loginPage = new LoginPage()
           const forgotPasswordPage = new ForgotPasswordPage()
 
           beforeEach(() => {
-              // Set the viewport for the current screen size
               cy.viewport(size.width, size.height);
               loginPage.open();
+              loginPage.click(constants.buttonFogetPassword)
             });
-                         
-          it('---', () => {              
+          /*               
+          it('Лого', () => {              
          
-          })
+          })*/
           
-          it('---', () => {
+          it('should display text "Восстановление пароля"', () => {
+            forgotPasswordPage.assertAvailability(forgotPasswordConstants.recoverPasswordText)
             
           })
-        
+          
+          it('should display button "Восстановить"', () => {              
+            forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.recoverButton)
+          })
+          /*
+          it('Поле для эл. почты с иконкой и плейсхолдеорм', () => {
+            
+          })*/
+
+          it('should display button "Перейти на страницу логина"', () => {              
+            forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.buttonGoToLoginPage)
+          })
+          
+          it('should display text with recover password instructions', () => {
+            forgotPasswordPage.assertAvailability(forgotPasswordConstants.instructionPart_1)
+            forgotPasswordPage.assertAvailability(forgotPasswordConstants.instructionPart_1)
+          })
 
         })
     })
 })
 
+/*
+Проверить, что url правильно указан
+Нажать на кнопку "Перейти на страницу логина"
+Проверить навигацию после перейхода на страницу логина
+Восстановить указав верную эл. почту
+Восстановить указав неверную эл. почту
+Восстановить оставив поле пустым
+Восстановить указав верный номер телефона
+Восстановить указав неверный номер телефона
+Нажать на кнопку "Восстановить"
+Проверить навигацию после восстановитления пароля
+Восстоновить пароль снова в течении 5 мин.
+Восстоновить пароль снова по истечению 5 мин.
+Нажать на кнопку "Перейти на страницу логина" после удачного восстановитления пароля
+Проверить уведомления об ошибках и подсвечивание полей после неудачного восстановитления пароля
 
+*/
+/*
 describe('Forgot Password Functionality', () => {
   const loginPage = new LoginPage()
   const forgotPasswordPage = new ForgotPasswordPage()
 
   beforeEach(() => {
     loginPage.open()
+    loginPage.click(constants.buttonFogetPassword)
   });
 
   it('--', () => {
@@ -56,7 +91,6 @@ describe('Forgot Password Functionality', () => {
 
  
 })
-
-
+*/
 
 
