@@ -3,7 +3,7 @@ import {loginPageLocators,constants} from "./LoginPageElements"
 Cypress.Commands.add('assertToast', (message, options = {}) => {
   const { timeout = 5000 } = options;
 
-  cy.get('.p-toast-message.p-toast-message-error', { timeout }) // Adjust selector
+  cy.get('.p-toast-message.p-toast-message-error', { timeout }) 
     .should('be.visible')
     .and('contain', message)
     .wait(timeout)
@@ -44,12 +44,6 @@ class LoginPage {
   
   assertErrorMessage(text) {
     cy.contains(text).should('be.visible')
-  } 
-
-  assertErrorAlertOpens(alertText) {
-     cy.on('window:alert', (text) => {
-        expect(text).to.equal(alertText);
-             })
   } 
 
   assertAvailability(text) {

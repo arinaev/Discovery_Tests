@@ -1,5 +1,15 @@
 import { forgotPasswordLocators,constants } from "./ForgotPasswordElements"
 
+Cypress.Commands.add('assertToast', (message, options = {}) => {
+  const { timeout = 5000 } = options;
+
+  cy.get('.p-toast-message.p-toast-message-error', { timeout }) 
+    .should('be.visible')
+    .and('contain', message)
+    .wait(timeout)
+    .should('not.exist');
+});
+
 class ForgotPasswordPage {
 
   open() {
@@ -13,30 +23,10 @@ class ForgotPasswordPage {
   clickButton(selector) {
     cy.get(selector).click()
   }
-  /*
-  login(email, password) {
-    this.typeText(loginPageLocators.emailField, email)
-    this.typeText(loginPageLocators.passwordField, password)
-    this.clickButton(loginPageLocators.loginButton)
-  }
- 
-  assertSuccessfulLogin(userFirstName, userLastName){
-    cy.wait(5000)
-    cy.contains(userFirstName).should('be.visible')
-    cy.contains(userLastName).should('be.visible')
-   }
- */
-  
+   
   assertErrorMessage(text) {
     cy.contains(text).should('be.visible')
   } 
-
- /*
-  assertErrorAlertOpens(alertText) {
-    cy.on('window:alert', (text) => {
-       expect(text).to.equal(alertText);
-    })
-  } */
 
   assertAvailability(text) {
     cy.contains(text).should('be.visible')
@@ -49,6 +39,10 @@ class ForgotPasswordPage {
   assertElementIsChecked(selector) {
     cy.get(selector).should('be.checked')
   }
+
+  assertToastAlert(text) {
+    cy.assertToast(text);
+    }
   
 }
  
