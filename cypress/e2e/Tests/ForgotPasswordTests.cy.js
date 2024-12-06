@@ -36,10 +36,13 @@ describe('Forgot Password Page View', () => {
           it('should display button "Восстановить"', () => {              
             forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.recoverButton)
           })
-          /*
-          it('Поле для эл. почты с иконкой и плейсхолдеорм', () => {
+          
+          it('should display an email input field with apropriate icon and placeholder', () => {
+            forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.emailField)
+            forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.emailFieldIcon)
+            //check placeholder
             
-          })*/
+          })
 
           it('should display button "Перейти на страницу логина"', () => {              
             forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.buttonGoToLoginPage)
@@ -47,7 +50,7 @@ describe('Forgot Password Page View', () => {
           
           it('should display text with recover password instructions', () => {
             forgotPasswordPage.assertAvailability(forgotPasswordConstants.instructionPart_1)
-            forgotPasswordPage.assertAvailability(forgotPasswordConstants.instructionPart_1)
+            forgotPasswordPage.assertAvailability(forgotPasswordConstants.instructionPart_2)
           })
 
         })
@@ -55,23 +58,13 @@ describe('Forgot Password Page View', () => {
 })
 
 /*
-Проверить, что url правильно указан
-Нажать на кнопку "Перейти на страницу логина"
-Проверить навигацию после перейхода на страницу логина
-Восстановить указав верную эл. почту
-Восстановить указав неверную эл. почту
-Восстановить оставив поле пустым
-Восстановить указав верный номер телефона
-Восстановить указав неверный номер телефона
-Нажать на кнопку "Восстановить"
-Проверить навигацию после восстановитления пароля
-Восстоновить пароль снова в течении 5 мин.
-Восстоновить пароль снова по истечению 5 мин.
-Нажать на кнопку "Перейти на страницу логина" после удачного восстановитления пароля
-Проверить уведомления об ошибках и подсвечивание полей после неудачного восстановитления пароля
+//Проверить навигацию после перейхода на страницу логина
+//Проверить навигацию после восстановитления пароля
+//Нажать на кнопку "Перейти на страницу логина" после удачного восстановитления пароля
+//Проверить подсвечивание полей после неудачного восстановитления пароля
 
 */
-/*
+
 describe('Forgot Password Functionality', () => {
   const loginPage = new LoginPage()
   const forgotPasswordPage = new ForgotPasswordPage()
@@ -81,16 +74,48 @@ describe('Forgot Password Functionality', () => {
     loginPage.click(constants.buttonFogetPassword)
   });
 
-  it('--', () => {
-    
-   })
-
- it('--', () => {
-   
- })
+  it('should be loaded a correct URL after openng the Forgot Password page', () => {
+    forgotPasswordPage.assertCorrectUrlLoaded(forgotPasswordConstants.urlDev);
+  })
 
  
+  it('should be opened a login page after clicking on the "Перейти на страницу логина" button', () => {
+    forgotPasswordPage.click(forgotPasswordConstants.buttonGoToLoginPage)
+    forgotPasswordPage.assertCorrectUrlLoaded(constants.urlDev);
+  })
+
+    
+   it('should display errors when the email input field is empty', () => {
+    forgotPasswordPage.clickButton(forgotPasswordLocators.recoverButton)
+    //forgotPasswordPage.assertToastAlert(constants.errorAlertText) //doesn't work
+    forgotPasswordPage.assertErrorMessage(constants.errorMessageTextEmptyField)
+   })
+  
+   it('should display errors when the entered email is invalid', () => {
+     forgotPasswordPage.requestCode(forgotPasswordConstants.wrongEmailFormat)
+    // forgotPasswordPage.assertToastAlert(forgotPasswordPage.errorAlertTextWrongInput) //doesn't work
+     forgotPasswordPage.assertErrorMessage(forgotPasswordConstants.errorInvalidEmail)
+  
+   })
+
+   it('should display errors when the email address is not existing in the system', () => {
+    forgotPasswordPage.requestCode(constants.wrongEmail)
+    //forgotPasswordPage.assertToastAlert(аconstants.errorNonExistingEmail) //doesn't work
+   })
+  
+   /*
+   it('should display success message when the email address is correct', () => {
+    forgotPasswordPage.requestCode(constants.wrongEmail)
+    loginPage.assertToastAlert(constants.errorAlertTextWrongInput)
+   })*/
+  
+
+/*
+  Восстоновить пароль снова в течении 5 мин.
+Восстоновить пароль снова по истечению 5 мин.
+
+ */
 })
-*/
+
 
 

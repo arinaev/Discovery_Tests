@@ -23,7 +23,16 @@ class ForgotPasswordPage {
   clickButton(selector) {
     cy.get(selector).click()
   }
+
+  //improve
+  click(label){
+    cy.contains(label).click()
+  }
    
+  requestCode(email) {
+    this.typeText(forgotPasswordLocators.emailField, email)
+  }
+
   assertErrorMessage(text) {
     cy.contains(text).should('be.visible')
   } 
@@ -43,6 +52,10 @@ class ForgotPasswordPage {
   assertToastAlert(text) {
     cy.assertToast(text);
     }
+
+  assertCorrectUrlLoaded(url) {
+    cy.url().should('eq', url);
+  }
   
 }
  
