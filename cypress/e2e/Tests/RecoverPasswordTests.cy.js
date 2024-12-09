@@ -40,7 +40,7 @@ describe('Forgot Password Page View', () => {
           it('should display an email input field with apropriate icon and placeholder', () => {
             forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.emailField)
             forgotPasswordPage.assertElementAvailability(forgotPasswordLocators.emailFieldIcon)
-            //check placeholder
+            forgotPasswordPage.assertPlaceholder(forgotPasswordLocators.emailField, forgotPasswordConstants.placeholder)
             
           })
 
@@ -87,35 +87,38 @@ describe('Forgot Password Functionality', () => {
     
    it('should display errors when the email input field is empty', () => {
     forgotPasswordPage.clickButton(forgotPasswordLocators.recoverButton)
-    //forgotPasswordPage.assertToastAlert(constants.errorAlertText) //doesn't work
-    forgotPasswordPage.assertErrorMessage(constants.errorMessageTextEmptyField)
+    forgotPasswordPage.assertToastAlert(forgotPasswordConstants.errorAlertText) 
+    forgotPasswordPage.assertErrorMessage(forgotPasswordConstants.errorMessageTextEmptyField)
    })
   
-   /*
+   
    it('should display errors when the entered email is invalid', () => {
-     forgotPasswordPage.requestCode(forgotPasswordConstants.wrongEmailFormat)
-    // forgotPasswordPage.assertToastAlert(forgotPasswordPage.errorAlertTextWrongInput) //doesn't work
-     forgotPasswordPage.assertErrorMessage(forgotPasswordConstants.errorInvalidEmail)
+    forgotPasswordPage.requestCode(forgotPasswordConstants.wrongEmailFormat)
+    forgotPasswordPage.assertErrorMessage(forgotPasswordConstants.errorInvalidEmail)
+    forgotPasswordPage.assertToastAlert(forgotPasswordConstants.errorAlertText)
   
-   })*/
+   })
 
    it('should display errors when the email address is not existing in the system', () => {
-    forgotPasswordPage.requestCode(constants.wrongEmail)
-    //forgotPasswordPage.assertToastAlert(аconstants.errorNonExistingEmail) //doesn't work
+    forgotPasswordPage.requestCode(forgotPasswordConstants.wrongEmail)
+    forgotPasswordPage.assertToastAlert(forgotPasswordConstants.errorNonExistingEmail)
    })
   
-   /*
+   
    it('should display success message when the email address is correct', () => {
-    forgotPasswordPage.requestCode(constants.wrongEmail)
-    loginPage.assertToastAlert(constants.errorAlertTextWrongInput)
-   })*/
-  
+    forgotPasswordPage.requestCode(forgotPasswordConstants.emailAddress)
+    loginPage.assertAvailability(forgotPasswordConstants.successfulRequestMessage)
+    //add more assertions
 
-/*
-  Восстоновить пароль снова в течении 5 мин.
-Восстоновить пароль снова по истечению 5 мин.
+   })
 
- */
+   it("should display success message when correct request for the same email address has repeated in 5 minutes", () => {
+    forgotPasswordPage.requestCode(forgotPasswordConstants.emailAddress)
+    loginPage.assertAvailability(forgotPasswordConstants.successfulRequestMessage)
+    
+
+   })
+
 })
 
 

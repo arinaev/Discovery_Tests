@@ -31,6 +31,7 @@ class ForgotPasswordPage {
    
   requestCode(email) {
     this.typeText(forgotPasswordLocators.emailField, email)
+    this.clickButton(forgotPasswordLocators.recoverButton)
   }
 
   assertErrorMessage(text) {
@@ -55,6 +56,11 @@ class ForgotPasswordPage {
 
   assertCorrectUrlLoaded(url) {
     cy.url().should('eq', url);
+  }
+
+  assertPlaceholder(selector, text) {
+    cy.get(selector)
+      .should('have.attr', 'placeholder', text);
   }
   
 }

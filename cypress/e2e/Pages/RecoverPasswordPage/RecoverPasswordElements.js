@@ -8,6 +8,7 @@ const recoverPasswordLocators = {
     
     emailAddress: "test@mailinator.com",
     
+    
    }
      
    export { recoverPasswordLocators,recoverPasswordConstants }
